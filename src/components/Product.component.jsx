@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { Card } from 'react-bootstrap';
 
-import { calcAndFormatPrice } from './../utils/index';
+import { calcAndFormatPrice } from '../utils/index';
 
-import AddToCartBtn from './AddToCartBtn.component'
+import AddToCartBtn from './AddToCartBtn.component';
 
 const Product = ({ product, cart, setCart }) => {
   const price = calcAndFormatPrice(product.price);
@@ -21,7 +21,7 @@ const Product = ({ product, cart, setCart }) => {
             </strong>
           </Card.Title>
         </Link>
-        <Card.Text as='div'>          
+        <Card.Text as='div'>
         </Card.Text>
         <Card.Text as='h5' className='mb-3'>
           {price} ש"ח{' '}

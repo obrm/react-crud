@@ -1,7 +1,7 @@
 import { Link, NavLink, useNavigate } from 'react-router-dom';
 import { Navbar, Nav, Container, Dropdown } from 'react-bootstrap';
 
-import { removeItem } from './../services/localStorageService';
+import { removeItem } from '../services/localStorageService';
 
 import logo from '../assets/images/logo.png';
 
@@ -39,24 +39,24 @@ const Header = ({ cart, user, setUser }) => {
               {cart.length > 0 &&
                 `(${cart.reduce((acc, item) => acc + item.qty, 0)})`}
             </NavLink>
-          {user ? (<Dropdown className='ml-auto'>
-            <Dropdown.Toggle variant='success' id='dropdown-basic'>
-              {user.name}
-            </Dropdown.Toggle>
-
-            <Dropdown.Menu>
-              <Dropdown.Item onClick={handleLogOut}>התנתק</Dropdown.Item>
-            </Dropdown.Menu>
-          </Dropdown>) : (
-            <Dropdown className='ml-auto'>
+            {user ? (<Dropdown className='ml-auto'>
               <Dropdown.Toggle variant='success' id='dropdown-basic'>
-                התחברות
+                {user.name}
               </Dropdown.Toggle>
 
               <Dropdown.Menu>
-                <Dropdown.Item onClick={() => navigate('/login')}>התחבר</Dropdown.Item>
+                <Dropdown.Item onClick={handleLogOut}>התנתק</Dropdown.Item>
               </Dropdown.Menu>
-            </Dropdown>
+            </Dropdown>) : (
+              <Dropdown className='ml-auto'>
+                <Dropdown.Toggle variant='success' id='dropdown-basic'>
+                  התחברות
+                </Dropdown.Toggle>
+
+                <Dropdown.Menu>
+                  <Dropdown.Item onClick={() => navigate('/login')}>התחבר</Dropdown.Item>
+                </Dropdown.Menu>
+              </Dropdown>
             )}
           </Nav>
         </Container>

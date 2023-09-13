@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
-import api from './../api/api';
+import api from '../api/api';
 
 import { Spinner } from '../components/layout';
 import { Message } from '../components';

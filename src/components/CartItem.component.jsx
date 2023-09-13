@@ -1,7 +1,7 @@
 import { Button } from 'react-bootstrap';
 
-import { calcAndFormatPrice } from './../utils/index';
-import { setItem } from './../services/localStorageService';
+import { calcAndFormatPrice } from '../utils/index';
+import { setItem } from '../services/localStorageService';
 
 const CartItem = ({ cart, setCart, thumbnail, name, price, qty, id }) => {
   const calculatedPrice = calcAndFormatPrice(price * qty);

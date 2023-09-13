@@ -2,8 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, Image, ListGroup, Card, Button } from 'react-bootstrap';
 
-import api from './../api/api';
-import { calcAndFormatPrice } from './../utils/index';
+import api from '../api/api';
+import { calcAndFormatPrice } from '../utils/index';
 
 import { Spinner } from '../components/layout';
 import { AddToCartBtn, Message } from '../components';
@@ -68,33 +68,33 @@ const Product = ({ setCart, cart, user }) => {
         <Spinner />
       ) : error.isError ? (
         <Message variant='danger' dismissible={false}>
-            {error.message}
+          {error.message}
         </Message>
       ) : (
         <>
           <Row>
-                <Col md={12}>
-                  <Image src={product.thumbnail} alt={product.name} fluid />
-                </Col>
-                <Col md={3}>
+            <Col md={12}>
+              <Image src={product.thumbnail} alt={product.name} fluid />
+            </Col>
+            <Col md={3}>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>
                     <Row>
-                          <Col>שם:</Col>
-                          <Col>
-                            <strong>
-                              {product.title}
-                            </strong>
-                          </Col>
-                        </Row>
-                      </ListGroup.Item>
-                      <ListGroup.Item>
-                        <Row>
+                      <Col>שם:</Col>
+                      <Col>
+                        <strong>
+                          {product.title}
+                        </strong>
+                      </Col>
+                    </Row>
+                  </ListGroup.Item>
+                  <ListGroup.Item>
+                    <Row>
                       <Col>מחיר:</Col>
                       <Col>
                         <strong
-                              style={{ fontSize: price > 999 && '0.85rem' }}
+                          style={{ fontSize: price > 999 && '0.85rem' }}
                         >
                           {product.price}{' '}ש"ח
                         </strong>
@@ -105,24 +105,24 @@ const Product = ({ setCart, cart, user }) => {
                     <Row>
                       <Col>סטטוס:</Col>
                       <Col>
-                            {product.stock > 0 ? `קיים במלאי` : `חסר במלאי`}
+                        {product.stock > 0 ? `קיים במלאי` : `חסר במלאי`}
                       </Col>
                     </Row>
-                      </ListGroup.Item>
-                  <ListGroup.Item>
-                        <AddToCartBtn
-                          disabled={product.stock === 0}
-                          cart={cart} setCart={setCart} id={product.id} />
                   </ListGroup.Item>
-                      {user && (
-                        <>
+                  <ListGroup.Item>
+                    <AddToCartBtn
+                      disabled={product.stock === 0}
+                      cart={cart} setCart={setCart} id={product.id} />
+                  </ListGroup.Item>
+                  {user && (
+                    <>
                       <ListGroup.Item>
-                            <Button onClick={handleEdit}>ערוך מוצר</Button>
+                        <Button onClick={handleEdit}>ערוך מוצר</Button>
                       </ListGroup.Item>
                       <ListGroup.Item>
-                            <Button variant="danger" onClick={handleDelete}>מחק מוצר</Button>
+                        <Button variant="danger" onClick={handleDelete}>מחק מוצר</Button>
                       </ListGroup.Item>
-                        </>)}
+                    </>)}
                 </ListGroup>
               </Card>
             </Col>

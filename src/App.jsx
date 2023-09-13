@@ -1,5 +1,8 @@
 import { useState, useEffect } from 'react';
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  RouterProvider
+} from 'react-router-dom';
 import { Container } from 'react-bootstrap';
 
 import api from './api/api';
@@ -14,11 +17,10 @@ import {
   AddProduct,
   Cart,
   NotFound,
-  SharedProductLayout,
   ProtectedRoute
 } from './pages';
 
-function App() {
+const App = () => {
   const [user, setUser] = useState(null);
   const [cart, setCart] = useState([]);
   const [products, setProducts] = useState([]);
@@ -32,19 +34,14 @@ function App() {
     const getProducts = async () => {
       try {
         setLoading(true);
-
-        const response = await api.get(
-          "/products",
-          {
-            transformResponse: [
-              (data) => {
-                const parsedData = JSON.parse(data);
-                return parsedData.products.slice(0, 8);
-              }
-            ]
-          }
-        );
-
+        const response = await api.get("/products", {
+          transformResponse: [
+            (data) => {
+              const parsedData = JSON.parse(data);
+              return parsedData.products.slice(0, 8);
+            }
+          ]
+        });
         setProducts(response.data);
         setItem('products', response.data);
       } catch (error) {
@@ -57,7 +54,6 @@ function App() {
         setLoading(false);
       }
     };
-
     getProducts();
   }, []);
 
@@ -75,43 +71,60 @@ function App() {
     }
   }, []);
 
+  const routes = [
+    {
+      path: '/',
+      element: <SharedLayout cart={cart} user={user} setUser={setUser} />,
+      children: [
+        {
+          index: true,
+          element: <Home products={products} cart={cart} setCart={setCart} loading={loading} error={error} />
+        },
+        {
+          path: 'login',
+          element: <Login user={user} setUser={setUser} />
+        },
+        {
+          path: 'cart',
+          element: <Cart cart={cart} setCart={setCart} products={products} />
+        },
+        {
+          path: 'add',
+          element: <ProtectedRoute user={user}><AddProduct /></ProtectedRoute>
+        },
+        {
+          path: 'products',
+          children: [
+            {
+              path: ':productId',
+              element: <Product cart={cart} setCart={setCart} user={user} />
+            },
+            {
+              path: ':productId/edit',
+              element: <ProtectedRoute user={user}><EditProduct /></ProtectedRoute>
+            }
+          ]
+        },
+        {
+          path: 'not-found',
+          element: <NotFound />
+        },
+        {
+          path: '*',
+          element: <NotFound />
+        }
+      ]
+    }
+  ];
+
+  const router = createBrowserRouter(routes);
+
   return (
-    <Router>
-      <Container>
-        <Routes>
-          <Route path='/' element={<SharedLayout cart={cart} user={user} setUser={setUser} />}>
-            <Route
-              index
-              element={<Home
-                products={products}
-                cart={cart}
-                setCart={setCart}
-                loading={loading}
-                error={error} />} />
-            <Route path='login' element={<Login user={user} setUser={setUser} />} />
-            <Route path='cart' element={<Cart cart={cart} setCart={setCart} products={products} />} />
-            <Route path='add' element={
-              <ProtectedRoute user={user}>
-                <AddProduct />
-              </ProtectedRoute>
-            } />
-
-            <Route path='products' element={<SharedProductLayout />}>
-              <Route path=':productId' element={<Product cart={cart} setCart={setCart} user={user} />} />
-              <Route path=':productId/edit' element={
-                <ProtectedRoute user={user}>
-                  <EditProduct />
-                </ProtectedRoute>
-              } />
-            </Route>
-
-            <Route path='not-found' element={<NotFound />} />
-            <Route path='*' element={<NotFound />} />
-          </Route>
-        </Routes>
-      </Container>
-    </Router>
+    <Container>
+      <RouterProvider router={router}>
+      </RouterProvider>
+    </Container>
   );
-}
+};
 
 export default App;

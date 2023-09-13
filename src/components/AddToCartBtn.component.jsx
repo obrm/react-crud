@@ -1,6 +1,6 @@
 import { Button } from 'react-bootstrap';
 
-import { getItem, setItem } from './../services/localStorageService';
+import { getItem, setItem } from '../services/localStorageService';
 
 const AddToCartBtn = ({ disabled, cart, setCart, id }) => {
 
@@ -21,7 +21,7 @@ const AddToCartBtn = ({ disabled, cart, setCart, id }) => {
       setCart(newCart);
       setItem("cart", newCart);
     }
-  }
+  };
 
   return (
     <Button
