@@ -1,9 +1,14 @@
-import { Navigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const ProtectedRoute = ({ children, user }) => {
-  if (!user) {
-    return <Navigate to='/not-found' />;
-  }
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (!user) {
+      navigate('/not-found');
+    }
+  }, [user, navigate]);
 
   return children;
 };

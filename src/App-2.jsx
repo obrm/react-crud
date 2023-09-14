@@ -14,7 +14,6 @@ import {
   AddProduct,
   Cart,
   NotFound,
-  SharedProductLayout,
   ProtectedRoute
 } from './pages';
 
@@ -96,14 +95,12 @@ function App() {
               </ProtectedRoute>
             } />
 
-            <Route path='products' element={<SharedProductLayout />}>
               <Route path=':productId' element={<Product cart={cart} setCart={setCart} user={user} />} />
               <Route path=':productId/edit' element={
                 <ProtectedRoute user={user}>
                   <EditProduct />
                 </ProtectedRoute>
               } />
-            </Route>
 
             <Route path='not-found' element={<NotFound />} />
             <Route path='*' element={<NotFound />} />
