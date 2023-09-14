@@ -35,7 +35,7 @@ const CartItem = ({ cart, setCart, thumbnail, name, price, qty, id }) => {
       <img src={thumbnail} alt={name} />
       <div>
         <h4>{name}</h4>
-        <h4 className='item-price'>{calculatedPrice} ש"ח</h4>
+        <h4 className='item-price'>{calculatedPrice}₪</h4>
         {/* remove Button */}
         <Button onClick={remove}>
           הסר

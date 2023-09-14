@@ -24,7 +24,7 @@ const Product = ({ product, cart, setCart }) => {
         <Card.Text as='div'>
         </Card.Text>
         <Card.Text as='h5' className='mb-3'>
-          {price} ש"ח{' '}
+          {price}₪{' '}
           <small>{product.stock === 0 && ` (חסר במלאי)`}</small>
         </Card.Text>
         <AddToCartBtn disabled={product.stock === 0} setCart={setCart} cart={cart} id={product.id} />

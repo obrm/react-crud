@@ -37,7 +37,7 @@ const Cart = ({ cart, setCart }) => {
         <hr />
         <div className='cart-total'>
           <h4>
-            סך הכל <span>{total} ש"ח</span>
+            סך הכל <span>{total}₪</span>
           </h4>
         </div>
         <button className='btn clear-btn' onClick={handleClearCart}>

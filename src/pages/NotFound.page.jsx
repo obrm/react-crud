@@ -1,3 +1,5 @@
+import { Link } from 'react-router-dom';
+
 const NotFound = () => {
   return (
     <>
@@ -11,6 +13,7 @@ const NotFound = () => {
           הדף לא נמצא
         </h1>
         <p className='large'>מצטערים, דף זה אינו קיים <br /> או שאין לך הרשאה לגשת אל הדף.</p>
+        <Link className='btn btn-success mt-5' to='/'>חזרה לדף הבית</Link>
       </div>
     </>
   );

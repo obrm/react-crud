@@ -96,7 +96,7 @@ const Product = ({ setCart, cart, user }) => {
                         <strong
                           style={{ fontSize: price > 999 && '0.85rem' }}
                         >
-                          {product.price}{' '}ש"ח
+                              {product.price}₪
                         </strong>
                       </Col>
                     </Row>

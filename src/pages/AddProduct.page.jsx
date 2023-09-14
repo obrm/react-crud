@@ -8,6 +8,7 @@ import { Message } from '../components';
 
 const AddProduct = () => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     title: '',
     price: '',
