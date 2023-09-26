@@ -9,6 +9,7 @@ import { Message } from '../components';
 
 const EditProduct = () => {
   const { productId } = useParams();
+
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState({
