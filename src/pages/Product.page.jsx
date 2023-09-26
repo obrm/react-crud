@@ -74,7 +74,7 @@ const Product = ({ setCart, cart, user }) => {
         <>
           <Row>
             <Col md={12}>
-              <Image src={product.thumbnail} alt={product.name} fluid />
+                  <Image src={product.thumbnail} alt={product.name} fluid style={{ borderRadius: '.5rem' }} />
             </Col>
                 <Col md={3} className='mt-3'>
               <Card>
