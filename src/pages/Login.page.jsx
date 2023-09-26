@@ -2,10 +2,13 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
+import { setItem } from '../services/localStorageService';
+
 import { Message } from '../components';
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''
@@ -32,7 +35,7 @@ const Login = ({ setUser }) => {
       });
     } else {
       const user = { email: formData.email, name: 'John Doe' };
-      localStorage.setItem('user', JSON.stringify(user));
+      setItem('user', user);
       setUser(user);
       navigate('/');
     }
