@@ -44,6 +44,14 @@ h2 {
   padding: 0.5rem 0;
 }
 
+.ml-1 {
+  margin-left: 0.8rem;
+}
+
+.mt-3 {
+  margin-top: 3.2rem;
+}
+
 .star {
   background: -webkit-linear-gradient(#7deb94, #53dbb2 60%, #38d1c5);
   -webkit-background-clip: text;

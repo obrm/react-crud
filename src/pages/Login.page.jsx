@@ -6,6 +6,7 @@ import { Message } from '../components';
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
+
   const [formData, setFormData] = useState({
     email: '',
     password: ''

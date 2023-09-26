@@ -6,31 +6,37 @@ import api from '../api/api';
 
 import { Spinner } from '../components/layout';
 import { Message } from '../components';
+import useForm from '../hooks/useForm';
 
 const EditProduct = () => {
   const { productId } = useParams();
 
-  const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState({
-    isError: false,
-    message: ''
-  });
-  const [formData, setFormData] = useState({
+
+  const initialFormData = {
     title: '',
     price: '',
     stock: '',
     thumbnail: '',
     description: ''
-  });
+  };
+  const apiPath = `/products/${productId}`;
+  const navigatePath = `/products/${productId}`;
+  const {
+    formData,
+    setFormData,
+    error,
+    setError,
+    handleChange,
+    handleSubmit
+  } = useForm(initialFormData, api.put, apiPath, navigatePath);
 
   const navigate = useNavigate();
 
   useEffect(() => {
     const getProduct = async () => {
       try {
-        const response = await api.get(`/products/${productId}`);
-        setProduct(response.data);
+        const response = await api.get(`/products/${productId}`);        
         setFormData({
           title: response.data.title,
           price: response.data.price,
@@ -39,7 +45,7 @@ const EditProduct = () => {
           description: response.data.description
         });
       } catch (error) {
-        console.error(error);
+        console.error(error, '💥💥💥');
         setError({
           isError: true,
           message: error.response.data.message
@@ -50,33 +56,12 @@ const EditProduct = () => {
     };
 
     getProduct();
-  }, [productId]);
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
-  };
+  }, [productId, setError, setFormData]);
 
   const handleCancel = () => {
-    navigate(`/products/${product.id}`);
+    navigate(`/products/${productId}`);
   };
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await api.put(`/products/${productId}`, formData);
-      navigate(`/products/${productId}`);
-    } catch (error) {
-      console.error(error);
-      setError({
-        isError: true,
-        message: error.response.data.message
-      });
-    }
-  };
 
   if (loading) {
     return <Spinner />;
@@ -92,7 +77,7 @@ const EditProduct = () => {
 
   return (
     <>
-      <Button onClick={() => navigate(`/products/${product.id}`)} className='mb-3'>
+      <Button onClick={() => navigate(`/products/${productId}`)} className='mb-3 mt-3' >
         חזרה
       </Button>
 
@@ -149,10 +134,10 @@ const EditProduct = () => {
               />
             </Form.Group>
 
-            <Button variant='secondary' onClick={handleCancel} className='mr-2'>
+            <Button variant='secondary' onClick={handleCancel} className='ml-1 mt-3'>
               בטל
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' className='mt-3'>
               שמור שינויים
             </Button>
           </Form>

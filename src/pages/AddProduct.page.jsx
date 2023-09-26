@@ -1,7 +1,7 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
+import useForm from '../hooks/useForm';
 import api from '../api/api';
 
 import { Message } from '../components';
@@ -9,43 +9,27 @@ import { Message } from '../components';
 const AddProduct = () => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     title: '',
     price: '',
     stock: '',
     thumbnail: '',
     description: ''
-  });
-  const [error, setError] = useState({
-    isError: false,
-    message: ''
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
   };
+  const apiPath = '/products/add';
+  const navigatePath = '/';
 
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    try {
-      await api.post('/products/add', formData);
-      navigate('/');
-    } catch (error) {
-      console.error(error);
-      setError({
-        isError: true,
-        message: error.response.data.message
-      });
-    }
-  };
+  const {
+    formData,
+    error,
+    handleChange,
+    handleSubmit
+  } = useForm(initialFormData, api.post, apiPath, navigatePath);
+
 
   return (
     <>
-      <Button onClick={() => navigate('/')} className='mb-3'>
+      <Button onClick={() => navigate('/')} className='mb-3 mt-3'>
         חזרה
       </Button>
 
@@ -109,7 +93,7 @@ const AddProduct = () => {
               </Message>
             )}
 
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' className='mt-3'>
               הוסף מוצר
             </Button>
           </Form>
