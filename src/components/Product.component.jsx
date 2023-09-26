@@ -11,7 +11,7 @@ const Product = ({ product, cart, setCart }) => {
   return (
     <Card className='my-3 p-3 rounded card-main card-main-sm card-main-md'>
       <Link to={`/products/${product.id}`}>
-        <Card.Img src={product.thumbnail} variant='top' alt={product.name} style={{ maxHeight: '10rem' }} />
+        <Card.Img src={product.thumbnail} variant='top' alt={product.name} style={{ maxHeight: '10rem', borderRadius: '.5rem' }} />
       </Link>
       <Card.Body>
         <Link to={`/products/${product.id}`}>
