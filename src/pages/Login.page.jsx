@@ -1,28 +1,24 @@
-import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
+
+import useForm from '../hooks/useForm';
 
 import { Message } from '../components';
 
 const Login = ({ setUser }) => {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
+  const initialFormData = {
     email: '',
     password: ''
-  });
-  const [error, setError] = useState({
-    isError: false,
-    message: ''
-  });
-
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormData({
-      ...formData,
-      [name]: value
-    });
   };
+
+  const {
+    formData,
+    error,
+    setError,
+    handleChange,
+  } = useForm(initialFormData);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -41,7 +37,7 @@ const Login = ({ setUser }) => {
 
   return (
     <>
-      <Button onClick={() => navigate('/')} className='mb-3'>
+      <Button onClick={() => navigate('/')} className='mb-3 mt-3'>
         חזרה
       </Button>
 
@@ -74,7 +70,7 @@ const Login = ({ setUser }) => {
               </Message>
             )}
 
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' className='mt-3'>
               התחבר
             </Button>
           </Form>

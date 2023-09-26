@@ -2,11 +2,11 @@ import { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { Row, Col, Form, Button } from 'react-bootstrap';
 
+import useForm from '../hooks/useForm';
 import api from '../api/api';
 
 import { Spinner } from '../components/layout';
 import { Message } from '../components';
-import useForm from '../hooks/useForm';
 
 const EditProduct = () => {
   const { productId } = useParams();
@@ -45,7 +45,7 @@ const EditProduct = () => {
           description: response.data.description
         });
       } catch (error) {
-        console.error(error, '💥💥💥');
+        console.error(error);
         setError({
           isError: true,
           message: error.response.data.message
