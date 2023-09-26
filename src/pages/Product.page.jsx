@@ -60,7 +60,7 @@ const Product = ({ setCart, cart, user }) => {
 
   return (
     <>
-      <Button onClick={() => navigate('/')} className='mb-3'>
+      <Button onClick={() => navigate('/')} className='mb-3 mt-3'>
         חזרה
       </Button>
 
@@ -76,7 +76,7 @@ const Product = ({ setCart, cart, user }) => {
             <Col md={12}>
               <Image src={product.thumbnail} alt={product.name} fluid />
             </Col>
-            <Col md={3}>
+                <Col md={3} className='mt-3'>
               <Card>
                 <ListGroup variant='flush'>
                   <ListGroup.Item>

@@ -92,7 +92,7 @@ const EditProduct = () => {
 
   return (
     <>
-      <Button onClick={() => navigate(`/products/${product.id}`)} className='mb-3'>
+      <Button onClick={() => navigate(`/products/${product.id}`)} className='mb-3 mt-3'>
         חזרה
       </Button>
 
@@ -149,10 +149,10 @@ const EditProduct = () => {
               />
             </Form.Group>
 
-            <Button variant='secondary' onClick={handleCancel} className='mr-2'>
+            <Button variant='secondary' onClick={handleCancel} className='ml-1 mt-3'>
               בטל
             </Button>
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' className='mt-3'>
               שמור שינויים
             </Button>
           </Form>

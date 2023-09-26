@@ -40,7 +40,7 @@ const Login = ({ setUser }) => {
 
   return (
     <>
-      <Button onClick={() => navigate('/')} className='mb-3'>
+      <Button onClick={() => navigate('/')} className='mb-3 mt-3'>
         חזרה
       </Button>
 
@@ -73,7 +73,7 @@ const Login = ({ setUser }) => {
               </Message>
             )}
 
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' className='mt-3'>
               התחבר
             </Button>
           </Form>

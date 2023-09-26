@@ -45,7 +45,7 @@ const AddProduct = () => {
 
   return (
     <>
-      <Button onClick={() => navigate('/')} className='mb-3'>
+      <Button onClick={() => navigate('/')} className='mb-3 mt-3'>
         חזרה
       </Button>
 
@@ -109,7 +109,7 @@ const AddProduct = () => {
               </Message>
             )}
 
-            <Button variant='primary' type='submit'>
+            <Button variant='primary' type='submit' className='mt-3'>
               הוסף מוצר
             </Button>
           </Form>
